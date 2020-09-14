@@ -1,18 +1,29 @@
 {
+  // ESLint 一旦发现配置文件中有 "root": true，它就会停止在父级目录中寻找。
   "root": true,
+  // https://cn.eslint.org/docs/user-guide/configuring#specifying-parser
   "parser": "@typescript-eslint/parser",
+  // https://cn.eslint.org/docs/user-guide/configuring#specifying-parser-options
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
     "project": "./tsconfig.*?.json"
   },
+  // https://github.com/kaelzhang/node-ignore https://git-scm.com/docs/gitignore
+  // 意味着忽略所有文件
   "ignorePatterns": ["**/*"],
+  // 将规则注册到 eslint 中
   "plugins": ["@typescript-eslint", "@nrwl/nx"],
   "extends": [
+    // eslint 基础
     "eslint:recommended",
+    // 解决 ts 冲突
     "plugin:@typescript-eslint/eslint-recommended",
+    // ts 规则
     "plugin:@typescript-eslint/recommended",
+    // prettier(顽固)  规则
     "prettier",
+    // 解决冲突
     "prettier/@typescript-eslint"
   ],
   "rules": {
