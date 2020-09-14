@@ -43,6 +43,12 @@ nx generate @nrwl/angular:application --name=client --style=scss --linter=eslint
 
   https://github.com/atowerlight/towerlight/commit/4de6fe02526c2afec7006b9b9c5224f08bcabc91
 
+## nestjs
+
+```shell
+ng generate @nrwl/nest:application --name=api --frontendProject=client
+```
+
 # tsconfig.base.json
 
 ```json
