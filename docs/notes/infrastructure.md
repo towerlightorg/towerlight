@@ -1,4 +1,45 @@
-## tsconfig.base.json
+# 安装
+
+```shell
+npx create-nx-workspace@latest
+```
+
+使用 oss 选项
+
+```shell
+npm install -D @nrwl/angular
+```
+
+## angular
+
+安装 nx 的 angular 插件
+
+```shell
+nx generate @nrwl/angular:application --name=client --style=scss --linter=eslint --routing --strict --no-interactive --dry-run
+```
+
+- [--strict](https://angular.io/guide/strict-mode) angular 严格模式，更严格的代码编写，更小的体积
+
+  ```json
+  {
+    "compilerOptions": {
+      "strict": true // enable strict type checking
+    },
+    "angularCompilerOptions": {
+      // Add strict template checks
+      "strictInjectionParameters": true,
+      "strictTemplates": true
+    }
+  }
+  ```
+
+- 删除 tslint 的相关包
+
+  ```json
+  (tslint, codelyzer)
+  ```
+
+# tsconfig.base.json
 
 ```json
 {
@@ -41,4 +82,3 @@
   "exclude": ["node_modules", "tmp"]
 }
 ```
-
