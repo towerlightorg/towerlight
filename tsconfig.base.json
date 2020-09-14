@@ -14,7 +14,9 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@towerlight/api": ["packages/api"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
