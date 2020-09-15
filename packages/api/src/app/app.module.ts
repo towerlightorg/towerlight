@@ -1,10 +1,19 @@
 import { Module } from '@nestjs/common';
+import { AngularUniversalModule } from '@nestjs/ng-universal';
+import { join } from 'path';
+
+import { AppServerModule } from '@towerlight/client/src/main.server';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 @Module({
-  imports: [],
+  imports: [
+    AngularUniversalModule.forRoot({
+      bootstrap: AppServerModule,
+      viewsPath: join(process.cwd(), 'dist/packages/client'),
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

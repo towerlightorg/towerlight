@@ -83,7 +83,8 @@
           "options": {
             "tsConfig": [
               "packages/client/tsconfig.app.json",
-              "packages/client/tsconfig.spec.json"
+              "packages/client/tsconfig.spec.json",
+              "packages/client/tsconfig.server.json"
             ],
             "exclude": ["**/node_modules/**", "!packages/client/**/*"],
             "linter": "eslint"
@@ -170,6 +171,61 @@
               "packages/api/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**", "!packages/api/**/*"]
+          }
+        },
+        "server": {
+          "builder": "@angular-builders/custom-webpack:server",
+          "options": {
+            "customWebpackConfig": {
+              "path": "packages/api/webpack.server.config.ts"
+            },
+            "outputPath": "dist/packages/api-server",
+            "main": "packages/api/server.ts",
+            "tsConfig": "packages/api/tsconfig.server.json",
+            "externalDependencies": [
+              "@nestjs/microservices",
+              "@nestjs/microservices/microservices-module",
+              "@nestjs/websockets",
+              "@nestjs/websockets/socket-module",
+              "cache-manager"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "packages/api/src/environments/environment.ts",
+                  "with": "packages/api/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": false
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "client:build",
+            "serverTarget": "api:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "client:build:production",
+              "serverTarget": "api:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "client:build:production",
+            "serverTarget": "api:server:production",
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {}
           }
         },
         "test": {

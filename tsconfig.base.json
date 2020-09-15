@@ -15,7 +15,8 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@towerlight/api": ["packages/api"]
+      "@towerlight/api/*": ["packages/api/*"],
+      "@towerlight/client/*": ["packages/client/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
